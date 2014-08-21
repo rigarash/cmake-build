@@ -44,7 +44,7 @@ def generate_config(module, source):
     print "source:", source
     print "install prefix:", options["CMAKE_INSTALL_PREFIX"]
         
-    script = open(os.path.join(os.getcwd(), "cmake-" + module + ".sh"), 'w')
+    script = open(os.path.join(os.getcwd(), "cmake-" + module + ".sh"), 'wx')
     script.write("mkdir -p " + module + "\n")
     script.write("rm -f " + os.path.join(module, "CMakeCache.txt") + '\n')
     script.write("rm -f " + os.path.join(module, "CPackConfig.cmake") + '\n')
