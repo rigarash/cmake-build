@@ -54,16 +54,15 @@ def generate_config(module, source):
     print("install prefix:", options["CMAKE_INSTALL_PREFIX"])
 
     script_path = os.path.join(os.getcwd(), "cmake-" + module + ".sh")
-    script = open(script_path, 'w')
-    script.write("mkdir -p " + module + "\n")
-    script.write("rm -f " + os.path.join(module, "CMakeCache.txt") + '\n')
-    script.write("rm -f " + os.path.join(module, "CPackConfig.cmake") + '\n')
-    script.write("rm -f " + os.path.join(module, "CPackSourceConfig.cmake") + '\n')
-    script.write("rm -rf " + os.path.join(module, "CMakeFiles/2.*") + '\n')
-    script.write("cd " + module + '\n')
-    script.write(cmake_command + '\n')
-    script.write("cp -fp CMakeCache.txt " + os.path.join("..", "cmake-" + module + ".cache") + "\n")
-    script.close()
+    with open(script_path, 'w') as script:
+        script.write("mkdir -p " + module + "\n")
+        script.write("rm -f " + os.path.join(module, "CMakeCache.txt") + '\n')
+        script.write("rm -f " + os.path.join(module, "CPackConfig.cmake") + '\n')
+        script.write("rm -f " + os.path.join(module, "CPackSourceConfig.cmake") + '\n')
+        script.write("rm -rf " + os.path.join(module, "CMakeFiles/2.*") + '\n')
+        script.write("cd " + module + '\n')
+        script.write(cmake_command + '\n')
+        script.write("cp -fp CMakeCache.txt " + os.path.join("..", "cmake-" + module + ".cache") + "\n")
 
     # Add execution flag to script
     script_mode = os.stat(script_path)
