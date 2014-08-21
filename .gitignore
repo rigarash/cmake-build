@@ -1,3 +1,7 @@
+# available modules
+trilinos
+rokko
+
 # install folders
 include/
 lib/
